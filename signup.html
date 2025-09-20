@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1>Sign Up</h1>
+    <form action="login.html" onsubmit="return validate()">
+        <input type="text" placeholder="Enter your name" id="name" > <br>
+        <small id="nameError" style="color: red;"></small> <br>
+        <input type="email" placeholder="Enter your email" id="email" > <br>
+         <small id="emailError" style="color: red;"></small> <br>
+        <input type="text" placeholder="Enter your password" id="password" > <br>
+         <small id="passError" style="color: red;"></small> <br>
+        <input type="number" placeholder="Enter your Mobile Number" id="mobile" > <br>
+         <small id="mobError" style="color: red;"></small> <br>
+        <input type="submit" value="Sign Up">
+        <script>
+        function validate(){
+            var user = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            var mobile = document.getElementById("mobile").value;
+            // Regular Expressions
+            var usercheck = /^[a-zA-Z]{3,30}$/;
+            var emailcheck = /^[a-z.\d]{3,}@{1}[a-z]{3,}[.]{1}[a-z]{3}$/;
+            var passwordcheck = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z]).{8,}$/;
+            var mobilecheck = /^[0-9]{11}$/ ;
+            if(usercheck.test(user))
+            {
+                document.getElementById("nameError").innerHTML = "" ;
+            }
+            else
+            {
+                   document.getElementById("nameError").innerHTML = "invalid user name" ;
+                   return false ;
+            }
+            if(emailcheck.test(email))
+            {
+                document.getElementById("emailError").innerHTML = "" ;
+            }
+            else
+            {
+                   document.getElementById("emailError").innerHTML = "invalid email" ;
+                   return false ;
+            }
+               if(passwordcheck.test(password))
+            {
+                document.getElementById("passError").innerHTML = "" ;
+            }
+            else
+            {
+                   document.getElementById("passError").innerHTML = "Password must contain atleast one uppercase letter, one lowercase letter, one digit and one special character" ;
+                   return false ;
+            }
+               if(mobilecheck.test(mobile))
+            {
+                document.getElementById("mobError").innerHTML = "" ;
+            }
+            else
+            {
+                   document.getElementById("mobError").innerHTML = "invalid mobile number" ;
+                   return false ;
+            }
+            localStorage.setItem("user",user);
+             localStorage.setItem("email",email);
+              localStorage.setItem("pwd",password);
+        }
+            
+
+        </script>
+    </form>
+</body>
+</html>
